@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.6" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.6">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\Db" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="roulette.sqlite" />
+      <Content Include="roulette.sqlite">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="DerivcoRoulette.Tests\**" />
+      <Content Remove="DerivcoRoulette.Tests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="DerivcoRoulette.Tests\UnitTest1.cs">
+        <Link>DerivcoRouletteTest\UnitTest1.cs</Link>
+      </Compile>
+      <Compile Remove="DerivcoRoulette.Tests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="DerivcoRoulette.Tests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="DerivcoRoulette.Tests\obj\DerivcoRoulette.Tests.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="DerivcoRoulette.Tests\obj\DerivcoRouletteTest.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="DerivcoRoulette.Tests\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="DerivcoRoulette.Tests\obj\project.packagespec.json" />
+    </ItemGroup>
+
+</Project>
